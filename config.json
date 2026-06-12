@@ -1,0 +1,17 @@
+{
+  "scan_directories": [
+    "C:\\SAS\\Logs",
+    "C:\\Programme\\SAS\\Logs"
+  ],
+  "output_directory": "C:\\Users\\lueckoff\\OneDrive - adesso Group\\Kunden\\Rheinenergie\\Logscanner\\output",
+  "keywords": [
+    "ERROR",
+    "FEHLER",
+    "WARNING",
+    "WARNUNG",
+    "Uninitialized",
+    "Invalid data"
+  ],
+  "file_extensions": [".log", ".lst", ".txt"],
+  "context_lines_after": 3
+}
