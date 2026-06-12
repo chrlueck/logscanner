@@ -98,12 +98,12 @@ def scan_directories(
     return all_findings
 
 
-def write_report(findings: list[dict], output_dir: str, run_time: datetime) -> str:
+def write_report(findings: list[dict], output_dir: str, filename_prefix: str, run_time: datetime) -> str:
     out_path = Path(output_dir)
     out_path.mkdir(parents=True, exist_ok=True)
 
     timestamp = run_time.strftime("%Y%m%d_%H%M%S")
-    report_file = out_path / f"logscan_{timestamp}.txt"
+    report_file = out_path / f"{filename_prefix}_{timestamp}.txt"
 
     with open(report_file, "w", encoding="utf-8") as f:
         f.write(f"SAS Log Scanner — Ausführung: {run_time.strftime('%d.%m.%Y %H:%M:%S')}\n")
@@ -161,7 +161,7 @@ def main():
         run_time=run_time,
     )
 
-    report_path = write_report(findings, config["output_directory"], run_time)
+    report_path = write_report(findings, config["output_directory"], config.get("output_filename", "logscan"), run_time)
     hit_count = sum(1 for e in findings if "error" not in e)
     print(f"\nFertig. {hit_count} Treffer gefunden.")
     print(f"Bericht: {report_path}")
